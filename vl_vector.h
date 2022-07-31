@@ -23,19 +23,26 @@ private:
 	bool _usingStack{};
 
 	/**
-	 * this function calculate the new capacity by thr formula that we got.
-	 * @param currentSize - the size of the current vector
-	 * @return int - capacity by thr formula that we got.
+	 * @brief  Calculate the new capacity by the following formula.
+	 *
+	 * @param size - the size of the current vector
+	 * @param k - the num of elements that we want to add
+	 * @return int - the new capacity.
 	 */
 	size_t _capC(size_t size, size_t k) const noexcept {
 		size_t temp = ((3 * (size + k)) / 2);
 		return size + k <= _sCapacity ? _sCapacity : floor(temp);
 	}
 
-	/**
-	 * this function copy from the heap array to the stack array and delete the heap array.
-	 * calling to this function only if (vectorSize <= STATIC_CAPACITY)
-	 */
+    /**
+     * @brief  Copy array from the second array to the first array.
+     *
+     * @param first - the array that we copy to
+     * @param second - the array that we copy from
+     *
+     * Note that data access with this method is unchecked and
+	 * out_of_range lookups are not defined.
+     */
 	void _copyArrays(T *first, const T *second) {
 		for (int i = 0; i < _size; ++i) {
 			first[i] = second[i];
@@ -166,7 +173,7 @@ public:
 	 *  element at the end of the vector and assigns the given data
 	 *  to it.
 	 */
-	void pushBack(const T& element) noexcept {
+	void pushBack(const T& element) {
 		if (_size < _capacity) {
 
 			if (_size < _sCapacity) {
@@ -210,7 +217,7 @@ public:
 	 *  This function will insert a copy of the given value before
 	 *  the specified location.
 	 */
-	iterator& insert(iterator position, const T& element) noexcept {
+	iterator& insert(iterator position, const T& element) {
 		if (begin() == end()) {
 			pushBack(*position);
 			position++;
@@ -252,7 +259,7 @@ public:
 	 *  by position.
 	 */
 	template<class InputIterator>
-	iterator& insert(iterator position, InputIterator first, InputIterator last) noexcept {
+	iterator& insert(iterator position, InputIterator first, InputIterator last) {
 		if (first == last) {
 			pushBack(*position);
 			position++;
@@ -296,7 +303,7 @@ public:
 	 *  This function will erase the element at the given position and thus
 	 *  shorten the vector by one.
 	 */
-	iterator& erase(iterator position) noexcept {
+	iterator& erase(iterator position) {
 		VLVector<T, StaticCapacity> tempVec;
 		int i = 0;
 
@@ -334,7 +341,7 @@ public:
 	 *  This function will erase the elements in the range
 	 *  [first,last) and shorten the vector accordingly.
 	 */
-	iterator& erase(iterator first, iterator last) noexcept {
+	iterator& erase(iterator first, iterator last) {
 		VLVector<T, StaticCapacity> tempVec;
 		int i = 0;
 
@@ -442,7 +449,7 @@ public:
 	 *  Returns a read/write iterator that points one past the last
 	 *  element in the vector.
 	 */
-	iterator end() {
+	iterator end() noexcept {
 		return begin() + _size;
 	}
 
@@ -450,7 +457,7 @@ public:
 	 *  Returns a read-only (constant) iterator that points one past
 	 *  the last element in the vector.
 	 */
-	const_iterator end() const {
+	const_iterator end() const noexcept {
 		return begin() + _size;
 	}
 
@@ -458,7 +465,7 @@ public:
 	 *  Returns a read-only (constant) iterator that points one past
 	 *  the last element in the vector.
 	 */
-	const_iterator cend() const {
+	const_iterator cend() const noexcept {
 		return cbegin() + _size;
 	}
 
@@ -475,7 +482,7 @@ public:
 	 *
 	 *  Whether the allocator is copied depends on the allocator traits.
 	 */
-	VLVector& operator=(const VLVector& rhs) noexcept {
+	VLVector& operator=(const VLVector& rhs) {
 		if (this == &rhs) {
 			return *this;
 		} else {
@@ -525,7 +532,7 @@ public:
 	 *  out_of_range lookups are not defined. (For checked lookups
 	 *  see at().)
 	 */
-	T& operator[](int i) noexcept {
+	T& operator[](int i) {
 		return {_usingStack ? _stackArray[i] : _heapArray[i]};
 	}
 
@@ -540,7 +547,7 @@ public:
 	 *  out_of_range lookups are not defined. (For checked lookups
 	 *  see at().)
 	 */
-	T operator[](int i) const noexcept {
+	T operator[](int i) const {
 		return {_usingStack ? _stackArray[i] : _heapArray[i]};
 	}
 
@@ -553,7 +560,7 @@ public:
 	 *  vectors.  Vectors are considered equivalent if their sizes are equal,
 	 *  and if corresponding elements compare equal.
 	*/
-	bool operator==(const VLVector& rhs) const noexcept {
+	bool operator==(const VLVector& rhs) const {
 		if ((*this).size() != rhs.size()) {
 			return false;
 		}
