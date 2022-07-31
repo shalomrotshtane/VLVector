@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/c/Users/User/CLionProjects/VL_Vector/main.cpp
+iostream
+-
+vl_vector.h
+/cygdrive/c/Users/User/CLionProjects/VL_Vector/vl_vector.h
+vector
+-
+cassert
+-
+chrono
+-
+
+/cygdrive/c/Users/User/CLionProjects/VL_Vector/vl_vector.h
+iostream
+-
+math.h
+-
+
