@@ -4,11 +4,9 @@
 /**
  * @brief A standard container which offers fixed time access to
  * individual elements in any order.
- * this class represent VLVectror that is a smart vector that using in the stack memory and in the
- * heap memory depends what is faster for im.
- * @tparam T - generic value that represent the object that we store in the vector.
- * @tparam C - the static capacity that represent the max size of element the the vector use in the
- * stack memory.
+ *
+ * @tparam T - Type of element.
+ * @tparam C - static capacity, the size of the vector that will be initialize on the stack for fast access.
  */
 template<class T, size_t StaticCapacity = 16>
 class VLVector {
