@@ -41,7 +41,7 @@ private:
      * @param second - the array that we copy from
      *
      * Note that data access with this method is unchecked and
-	 * out_of_range lookups are not defined.
+     * out_of_range lookups are not defined.
      */
 	void _copyArrays(T *first, const T *second) {
 		for (int i = 0; i < _size; ++i) {
